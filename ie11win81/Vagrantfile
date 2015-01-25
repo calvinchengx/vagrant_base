@@ -16,6 +16,7 @@ Vagrant.configure(2) do |config|
   config.vm.guest = "windows"
   config.vm.communicator = "winrm"
   config.winrm.username = "vagrant"
+  config.vm.network "forwarded_port", host: 33389, guest: 3389, id: "rdp", auto_correct: true
 
   #config.ssh.username = "vagrant"
   #config.ssh.private_key_path = "~/.vagrant.d/insecure_private_key"
@@ -51,10 +52,16 @@ Vagrant.configure(2) do |config|
   #
    config.vm.provider "virtualbox" do |vb|
      # Display the VirtualBox GUI when booting the machine
-     vb.gui = true
+     #vb.gui = true
   
      # Customize the amount of memory on the VM:
      vb.memory = "1024"
+
+     # Other customizations
+     # Enable remote desktop access
+     vb.customize ["modifyvm", :id, "--vrde", "on"]
+     vb.customize ["modifyvm", :id, "--vrdeport", "33389"]
+
    end
   #
   # View the documentation for the provider you are using for more
