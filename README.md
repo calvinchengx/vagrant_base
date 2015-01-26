@@ -1,5 +1,7 @@
-# Vagrantfiles for Windows Vagrant boxes
+# Vagrantfiles for my various base boxes
 
+* Linux
+    * Archlinux x86_64
 
 * Windows boxes are derived from modern.ie
 * Supported versions:
